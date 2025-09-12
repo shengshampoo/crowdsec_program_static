@@ -13,7 +13,6 @@ RUN apk add --no-cache \
   curl zstd-static zstd-dev g++ cmake bash \
   git pcre2-static pcre2-dev sqlite-static sqlite-dev ninja
 
-ENV XZ_OPT=-e9
 COPY build-static-crowdsec.sh build-static-crowdsec.sh
 RUN chmod +x ./build-static-crowdsec.sh
 RUN bash ./build-static-crowdsec.sh
