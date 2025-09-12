@@ -10,10 +10,10 @@ RUN apk upgrade
 RUN apk add --no-cache \
   gcc make linux-headers musl-dev \
   zlib-dev zlib-static python3-dev \
-  curl zstd-static zstd-dev g++ cmake \
+  curl zstd-static zstd-dev g++ cmake bash \
   git pcre2-static pcre2-dev sqlite-static sqlite-dev ninja
 
 ENV XZ_OPT=-e9
-COPY build-static-crowdsec.sh build-crowdsec-tmux.sh
+COPY build-static-crowdsec.sh build-static-crowdsec.sh
 RUN chmod +x ./build-static-crowdsec.sh
 RUN bash ./build-static-crowdsec.sh
