@@ -11,7 +11,7 @@ RUN apk add --no-cache \
   gcc make linux-headers musl-dev \
   zlib-dev zlib-static python3-dev \
   curl zstd-static zstd-dev g++ cmake \
-  git pcre2-static pcre2-dev sqlite-static sqlite-dev ninja xz
+  git pcre2-static pcre2-dev sqlite-static sqlite-dev ninja
 
 ENV XZ_OPT=-e9
 COPY build-static-crowdsec.sh build-crowdsec-tmux.sh
