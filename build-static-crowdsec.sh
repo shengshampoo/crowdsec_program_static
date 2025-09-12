@@ -33,16 +33,16 @@ make
 make install
 
 # crowdsec
+cd $WORKSPACE
 git clone https://github.com/crowdsecurity/crowdsec
 cd crowdsec
 CGO_CFLAGS="-D_LARGEFILE64_SOURCE" CGO_LDFLAGS="-static --static -no-pie -s -L/usr/lib" make BUILD_STATIC=1 release
 
 # cs-firewall-bouncer
+cd $WORKSPACE
 git clone https://github.com/crowdsecurity/cs-firewall-bouncer.git
 cd cs-firewall-bouncer
 make release
 
-cp /tmp/workspace/crowdsec/crowdsec-release.tgz /work/artifact
-cp /tmp/workspace/cs-firewall-bouncer/crowdsec-firewall-bouncer.tgz /work/artifact 
-
-
+cp /tmp/workspace/crowdsec/crowdsec-*.tgz /work/artifact
+cp /tmp/workspace/cs-firewall-bouncer/crowdsec-firewall-bouncer*.tgz /work/artifact
