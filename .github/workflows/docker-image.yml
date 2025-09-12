@@ -19,7 +19,7 @@ jobs:
 
     - name: build static program with alpine linux docker with golang
       run: |
-        docker run --cidfile=builder.cid buildergo true
+        docker run --cidfile=buildergo.cid buildergo true
         docker cp "$(cat buildergo.cid):work/artifact/." .
 
     - name: Upload static program
