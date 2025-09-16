@@ -1,4 +1,4 @@
-name: Docker Image CI - X86_64 for Alpine Linux with golang
+name: Docker Image CI - X86_64/AARCH64 for Alpine Linux with golang
 
 on:
   push:
