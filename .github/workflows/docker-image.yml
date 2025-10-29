@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build --tag buildergo .
+      run: docker build -f Dockerfile-${{ matrix.dockeros } --tag buildergo .
 
     - name: build static program with alpine/alpaquita linux docker with golang
       run: |
