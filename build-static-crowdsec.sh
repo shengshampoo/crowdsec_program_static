@@ -37,7 +37,7 @@ cd $WORKSPACE
 git clone https://github.com/crowdsecurity/crowdsec
 cd crowdsec
 #CGO_CFLAGS="-D_LARGEFILE64_SOURCE" CGO_LDFLAGS="-static --static -no-pie -s -L/usr/lib" 
-make BUILD_STATIC=1 release
+make BUILD_STATIC=1 BUILD_RE2_WASM=1 release
 
 # cs-firewall-bouncer
 cd $WORKSPACE
