@@ -11,7 +11,8 @@ RUN apk add --no-cache \
   gcc make linux-headers musl-dev \
   zlib-dev zlib-static python3-dev \
   curl zstd-static zstd-dev g++ cmake bash \
-  git pcre2-static pcre2-dev sqlite-static sqlite-dev ninja
+  git pcre2-static pcre2-dev sqlite-static sqlite-dev ninja \
+  build-base pkgconfig
 
 COPY build-static-crowdsec.sh build-static-crowdsec.sh
 RUN chmod +x ./build-static-crowdsec.sh
