@@ -36,11 +36,6 @@ make install
 cd $WORKSPACE
 git clone https://github.com/crowdsecurity/crowdsec
 cd crowdsec
-sed -i '/go-re2/s/wasilibs/shengshampoo/' ./go.mod
-sed -i '/go-re2/s/v1.10.0/main/' ./go.mod
-go clean -modcache
-go mod tidy
-go init
 CGO_CFLAGS="-D_LARGEFILE64_SOURCE" CGO_LDFLAGS="-static --static -no-pie -s -L/usr/lib" make BUILD_STATIC=1 release
 
 # cs-firewall-bouncer
