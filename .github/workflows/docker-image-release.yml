@@ -1,0 +1,53 @@
+name: Docker Image CI - X86_64/AARCH64 for Alpine/Alpaquita Linux with golang to continuous tags
+
+
+on:
+  push:
+    branches: [ "main" ]
+    tags:
+      - 'continuous'
+  pull_request:
+    branches: [ "main" ]
+  # run it manually
+  workflow_dispatch:    
+  schedule:
+    - cron: "5 10 * * *"  
+    - cron: "15 20 * * *"   
+
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-24.04-arm]
+        dockeros: [alpine, alpaquita]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build -f Dockerfile-${{ matrix.dockeros }} --tag buildergo .
+
+    - name: build static program with alpine/alpaquita linux docker with golang
+      run: |
+        docker run --cidfile=buildergo.cid buildergo true
+        docker cp "$(cat buildergo.cid):work/artifact/." .
+        
+    - name: Upload crowdsec binary to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: ./crowdsec-release.tgz 
+        asset_name: crowdsec-release-${{ matrix.dockeros }}-${{ runner.os }}-${{ runner.arch }}.tgz
+        tag: refs/tags/continuous
+        overwrite: true
+        body: "fully static crowdsec release binary using alpine/alpaquita linux docker containers"  
+
+    - name: Upload crowdsec firewall bouncer to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        file: ./crowdsec-firewall-bouncer.tgz  
+        asset_name: crowdsec-firewall-bouncer-${{ matrix.dockeros }}-${{ runner.os }}-${{ runner.arch }}.tgz
+        tag: refs/tags/continuous
+        overwrite: true
+        body: "crowdsec firewall bouncer using alpine/alpaquita linux docker containers"        
