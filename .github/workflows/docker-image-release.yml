@@ -41,7 +41,7 @@ jobs:
         asset_name: crowdsec-release-${{ matrix.dockeros }}-${{ runner.os }}-${{ runner.arch }}.tgz
         tag: refs/tags/continuous
         overwrite: true
-        body: "fully static crowdsec release binary using alpine/alpaquita linux docker containers"  
+        body: "Fully static crowdsec release binary and crowdsec firewall bouncer using alpine/alpaquita linux docker containers."  
 
     - name: Upload crowdsec firewall bouncer to release
       uses: svenstaro/upload-release-action@v2
@@ -50,4 +50,4 @@ jobs:
         asset_name: crowdsec-firewall-bouncer-${{ matrix.dockeros }}-${{ runner.os }}-${{ runner.arch }}.tgz
         tag: refs/tags/continuous
         overwrite: true
-        body: "crowdsec firewall bouncer using alpine/alpaquita linux docker containers"        
+        body: "Fully static crowdsec release binary and crowdsec firewall bouncer using alpine/alpaquita linux docker containers."        
